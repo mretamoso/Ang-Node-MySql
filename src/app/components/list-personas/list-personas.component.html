@@ -6,7 +6,7 @@
         <mat-label>Filtro</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="" #input autocomplete="off">
     </mat-form-field>
-    <button mat-raised-button color="primary">Agregar persona</button>
+    <button (click)="addEditPersona()" mat-raised-button color="primary">Agregar persona</button>
     <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!-- Position Column -->
         <ng-container matColumnDef="nombre">
