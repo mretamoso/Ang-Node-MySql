@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+    <span>Listado de Personas</span>
+</mat-toolbar>
+<mat-card>
+    <mat-form-field appearance="standard">
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="" #input autocomplete="off">
+    </mat-form-field>
+    <button mat-raised-button color="primary">Agregar persona</button>
+    <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+        <ng-container matColumnDef="apellido">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+            <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+        </ng-container>
+        <ng-container matColumnDef="correo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
+            <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+        </ng-container>
+        <ng-container matColumnDef="tipoDocumento">
+            <th mat-header-cell *matHeaderCellDef> Tipo Documento </th>
+            <td mat-cell *matCellDef="let element"> {{element.tipoDocumento}} </td>
+        </ng-container>
+        <ng-container matColumnDef="documento">
+            <th mat-header-cell *matHeaderCellDef> Documento </th>
+            <td mat-cell *matCellDef="let element"> {{element.documento}} </td>
+        </ng-container>
+        <ng-container matColumnDef="fechaNacimiento">
+            <th mat-header-cell *matHeaderCellDef> Fecha Nacimiento </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaNacimiento | date:'dd/MM/yyyy'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon class="btnEdit" matTooltip="Editar persona">edit_note</mat-icon>
+                <mat-icon class="btnDelete" matTooltip="Eliminar persona">delete</mat-icon>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</mat-card>
